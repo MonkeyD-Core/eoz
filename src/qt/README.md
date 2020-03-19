@@ -60,7 +60,7 @@ Represents the view to a single wallet.
 
 * UI elements like EoziAmountField, which inherit from QWidget.
 * `eozistrings.cpp`: automatically generated
-* `eoziunits.(h/cpp)`: BTC / mBTC / etc handling
+* `eoziunits.(h/cpp)`: EOZ / mEOZ / etc handling
 * `callback.h`
 * `guiconstants.h`: UI colors, app name, etc
 * `guiutil.h`: several helper functions

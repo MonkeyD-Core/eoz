@@ -150,7 +150,7 @@ bool parseEoziURI(const QUrl &uri, SendCoinsRecipient *out)
         {
             if(!i->second.isEmpty())
             {
-                if(!EoziUnits::parse(EoziUnits::BTC, i->second, &rv.amount))
+                if(!EoziUnits::parse(EoziUnits::EOZ, i->second, &rv.amount))
                 {
                     return false;
                 }
@@ -183,7 +183,7 @@ QString formatEoziURI(const SendCoinsRecipient &info)
 
     if (info.amount)
     {
-        ret += QString("?amount=%1").arg(EoziUnits::format(EoziUnits::BTC, info.amount, false, EoziUnits::separatorNever));
+        ret += QString("?amount=%1").arg(EoziUnits::format(EoziUnits::EOZ, info.amount, false, EoziUnits::separatorNever));
         paramCount++;
     }
 

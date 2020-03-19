@@ -15,9 +15,9 @@ EoziUnits::EoziUnits(QObject *parent):
 QList<EoziUnits::Unit> EoziUnits::availableUnits()
 {
     QList<EoziUnits::Unit> unitlist;
-    unitlist.append(BTC);
-    unitlist.append(mBTC);
-    unitlist.append(uBTC);
+    unitlist.append(EOZ);
+    unitlist.append(mEOZ);
+    unitlist.append(uEOZ);
     unitlist.append(SAT);
     return unitlist;
 }
@@ -26,9 +26,9 @@ bool EoziUnits::valid(int unit)
 {
     switch(unit)
     {
-    case BTC:
-    case mBTC:
-    case uBTC:
+    case EOZ:
+    case mEOZ:
+    case uEOZ:
     case SAT:
         return true;
     default:
@@ -40,9 +40,9 @@ QString EoziUnits::longName(int unit)
 {
     switch(unit)
     {
-    case BTC: return QString("BTC");
-    case mBTC: return QString("mBTC");
-    case uBTC: return QString::fromUtf8("µBTC (bits)");
+    case EOZ: return QString("EOZ");
+    case mEOZ: return QString("mEOZ");
+    case uEOZ: return QString::fromUtf8("µEOZ (bits)");
     case SAT: return QString("Satoshi (sat)");
     default: return QString("???");
     }
@@ -52,7 +52,7 @@ QString EoziUnits::shortName(int unit)
 {
     switch(unit)
     {
-    case uBTC: return QString::fromUtf8("bits");
+    case uEOZ: return QString::fromUtf8("bits");
     case SAT: return QString("sat");
     default: return longName(unit);
     }
@@ -62,9 +62,9 @@ QString EoziUnits::description(int unit)
 {
     switch(unit)
     {
-    case BTC: return QString("Eozis");
-    case mBTC: return QString("Milli-Eozis (1 / 1" THIN_SP_UTF8 "000)");
-    case uBTC: return QString("Micro-Eozis (bits) (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+    case EOZ: return QString("Eozis");
+    case mEOZ: return QString("Milli-Eozis (1 / 1" THIN_SP_UTF8 "000)");
+    case uEOZ: return QString("Micro-Eozis (bits) (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
     case SAT: return QString("Satoshi (sat) (1 / 100" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
     default: return QString("???");
     }
@@ -74,9 +74,9 @@ qint64 EoziUnits::factor(int unit)
 {
     switch(unit)
     {
-    case BTC: return 100000000;
-    case mBTC: return 100000;
-    case uBTC: return 100;
+    case EOZ: return 100000000;
+    case mEOZ: return 100000;
+    case uEOZ: return 100;
     case SAT: return 1;
     default: return 100000000;
     }
@@ -86,9 +86,9 @@ int EoziUnits::decimals(int unit)
 {
     switch(unit)
     {
-    case BTC: return 8;
-    case mBTC: return 5;
-    case uBTC: return 2;
+    case EOZ: return 8;
+    case mEOZ: return 5;
+    case uEOZ: return 2;
     case SAT: return 0;
     default: return 0;
     }

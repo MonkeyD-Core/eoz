@@ -122,7 +122,7 @@ public:
 
             const QFontMetrics fm(fontMetrics());
             int h = lineEdit()->minimumSizeHint().height();
-            int w = GUIUtil::TextWidth(fm, EoziUnits::format(EoziUnits::BTC, EoziUnits::maxMoney(), false, EoziUnits::separatorAlways));
+            int w = GUIUtil::TextWidth(fm, EoziUnits::format(EoziUnits::EOZ, EoziUnits::maxMoney(), false, EoziUnits::separatorAlways));
             w += 2; // cursor blinking space
 
             QStyleOptionSpinBox opt;
@@ -148,7 +148,7 @@ public:
     }
 
 private:
-    int currentUnit{EoziUnits::BTC};
+    int currentUnit{EoziUnits::EOZ};
     CAmount singleStep{CAmount(100000)}; // satoshis
     mutable QSize cachedMinimumSizeHint;
     bool m_allow_empty{true};
