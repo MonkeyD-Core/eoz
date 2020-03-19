@@ -378,8 +378,8 @@
         <translation>Alatke za tabove</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and bitcoin: URIs)</source>
-        <translation>Zatražite plaćanje (generiše QR kodove i bitcoin: URI-e)</translation>
+        <source>Request payments (generates QR codes and eozi: URIs)</source>
+        <translation>Zatražite plaćanje (generiše QR kodove i eozi: URI-e)</translation>
     </message>
     <message>
         <source>Error</source>
@@ -702,7 +702,7 @@
     </message>
     </context>
 <context>
-    <name>bitcoin-core</name>
+    <name>eozi-core</name>
     <message>
         <source>Insufficient funds</source>
         <translation>Nedovoljno sredstava</translation>

@@ -99,7 +99,7 @@ chain for " target " development."))
       (home-page (package-home-page xgcc))
       (license (package-license xgcc)))))
 
-(define* (make-bitcoin-cross-toolchain target
+(define* (make-eozi-cross-toolchain target
                                   #:key
                                   (base-gcc-for-libc gcc-5)
                                   (base-kernel-headers linux-libre-headers-4.19)
@@ -147,12 +147,12 @@ desirable for building Bitcoin Core release binaries."
        ;; Native gcc 9 toolchain targeting glibc 2.27
        (make-gcc-toolchain gcc-9 glibc-2.27)
        ;; Cross gcc 9 toolchains targeting glibc 2.27
-       (make-bitcoin-cross-toolchain "i686-linux-gnu")
-       (make-bitcoin-cross-toolchain "x86_64-linux-gnu")
-       (make-bitcoin-cross-toolchain "aarch64-linux-gnu")
-       (make-bitcoin-cross-toolchain "arm-linux-gnueabihf")
+       (make-eozi-cross-toolchain "i686-linux-gnu")
+       (make-eozi-cross-toolchain "x86_64-linux-gnu")
+       (make-eozi-cross-toolchain "aarch64-linux-gnu")
+       (make-eozi-cross-toolchain "arm-linux-gnueabihf")
        ;; The glibc 2.27 for riscv64 needs gcc 7 to successfully build (see:
        ;; https://www.gnu.org/software/gcc/gcc-7/changes.html#riscv). The final
        ;; toolchain is still a gcc 9 toolchain targeting glibc 2.27.
-       (make-bitcoin-cross-toolchain "riscv64-linux-gnu"
+       (make-eozi-cross-toolchain "riscv64-linux-gnu"
                                      #:base-gcc-for-libc gcc-7)))

@@ -2,14 +2,14 @@
 
 *.exe
 *.pdb
-src/bitcoin
-src/bitcoind
-src/bitcoin-cli
-src/bitcoin-tx
-src/bitcoin-wallet
-src/test/test_bitcoin
-src/test/test_bitcoin_fuzzy
-src/qt/test/test_bitcoin-qt
+src/eozi
+src/eozid
+src/eozi-cli
+src/eozi-tx
+src/eozi-wallet
+src/test/test_eozi
+src/test/test_eozi_fuzzy
+src/qt/test/test_eozi-qt
 
 # autoreconf
 Makefile.in
@@ -32,8 +32,8 @@ config.log
 config.status
 configure
 libtool
-src/config/bitcoin-config.h
-src/config/bitcoin-config.h.in
+src/config/eozi-config.h
+src/config/eozi-config.h.in
 src/config/stamp-h1
 src/obj
 share/setup.nsi
@@ -47,11 +47,11 @@ src/qt/forms/ui_*.h
 
 src/qt/test/moc*.cpp
 
-src/qt/bitcoin-qt.config
-src/qt/bitcoin-qt.creator
-src/qt/bitcoin-qt.creator.user
-src/qt/bitcoin-qt.files
-src/qt/bitcoin-qt.includes
+src/qt/eozi-qt.config
+src/qt/eozi-qt.creator
+src/qt/eozi-qt.creator.user
+src/qt/eozi-qt.files
+src/qt/eozi-qt.includes
 
 .deps
 .dirstamp
@@ -88,7 +88,7 @@ src/qt/bitcoin-qt.includes
 *.qm
 Makefile
 !depends/Makefile
-bitcoin-qt
+eozi-qt
 Bitcoin-Qt.app
 background.tiff*
 
@@ -97,7 +97,7 @@ Makefile.am.user
 
 # Unit-tests
 Makefile.test
-bitcoin-qt_test
+eozi-qt_test
 
 # Resources cpp
 qrc_*.cpp
@@ -110,7 +110,7 @@ build
 *.gcno
 *.gcda
 /*.info
-test_bitcoin.coverage/
+test_eozi.coverage/
 total.coverage/
 coverage_percent.txt
 
@@ -125,7 +125,7 @@ test/cache/*
 
 /doc/doxygen/
 
-libbitcoinconsensus.pc
+libeoziconsensus.pc
 contrib/devtools/split-debug.sh
 
 # Output from running db4 installation

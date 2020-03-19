@@ -9,15 +9,15 @@ SOURCE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'src'
 DEFAULT_PLATFORM_TOOLSET = R'v141'
 
 libs = [
-    'libbitcoin_cli',
-    'libbitcoin_common',
-    'libbitcoin_crypto',
-    'libbitcoin_server',
-    'libbitcoin_util',
-    'libbitcoin_wallet_tool',
-    'libbitcoin_wallet',
-    'libbitcoin_zmq',
-    'bench_bitcoin',
+    'libeozi_cli',
+    'libeozi_common',
+    'libeozi_crypto',
+    'libeozi_server',
+    'libeozi_util',
+    'libeozi_wallet_tool',
+    'libeozi_wallet',
+    'libeozi_zmq',
+    'bench_eozi',
 ]
 
 ignore_list = [
@@ -75,7 +75,7 @@ def main():
             with open(vcxproj_filename, 'w', encoding='utf-8') as vcxproj_file:
                 vcxproj_file.write(vcxproj_in_file.read().replace(
                     '@SOURCE_FILES@\n', content))
-    copyfile(os.path.join(SOURCE_DIR,'../build_msvc/bitcoin_config.h'), os.path.join(SOURCE_DIR, 'config/bitcoin-config.h'))
+    copyfile(os.path.join(SOURCE_DIR,'../build_msvc/eozi_config.h'), os.path.join(SOURCE_DIR, 'config/eozi-config.h'))
     copyfile(os.path.join(SOURCE_DIR,'../build_msvc/libsecp256k1_config.h'), os.path.join(SOURCE_DIR, 'secp256k1/src/libsecp256k1-config.h'))
 
 if __name__ == '__main__':

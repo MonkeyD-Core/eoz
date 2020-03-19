@@ -391,9 +391,9 @@ Haga clic para habilitar la actividad de red nuevamente.</translation>
         <translation>Pestañas</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and bitcoin: URIs)</source>
+        <source>Request payments (generates QR codes and eozi: URIs)</source>
         <translation> 
-Solicitar pagos (genera códigos QR y bitcoin: URI)
+Solicitar pagos (genera códigos QR y eozi: URI)
  </translation>
     </message>
     <message>
@@ -879,7 +879,7 @@ Solicitar pagos (genera códigos QR y bitcoin: URI)
     </message>
     </context>
 <context>
-    <name>bitcoin-core</name>
+    <name>eozi-core</name>
     <message>
         <source>Verifying blocks...</source>
         <translation>Verificando bloques...</translation>

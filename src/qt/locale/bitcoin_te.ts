@@ -436,6 +436,6 @@
     </message>
     </context>
 <context>
-    <name>bitcoin-core</name>
+    <name>eozi-core</name>
     </context>
 </TS>
