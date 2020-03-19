@@ -7,9 +7,9 @@ assignees: ''
 
 ---
 
-<!-- This issue tracker is only for technical issues related to Bitcoin Core.
+<!-- This issue tracker is only for technical issues related to Eozi Core.
 
-General eozi questions and/or support requests are best directed to the Bitcoin StackExchange at https://eozi.stackexchange.com.
+General eozi questions and/or support requests are best directed to the Eozi StackExchange at https://eozi.stackexchange.com.
 
 For reporting security issues, please read instructions at https://eozicore.org/en/contact/.
 
@@ -31,7 +31,7 @@ If the node is "stuck" during sync or giving "block checksum mismatch" errors, p
 
 **System information**
 
-<!-- What version of Bitcoin Core are you using, where did you get it (website, self-compiled, etc)? -->
+<!-- What version of Eozi Core are you using, where did you get it (website, self-compiled, etc)? -->
 
 <!-- What type of machine are you observing the error on (OS/CPU and disk type)? -->
 

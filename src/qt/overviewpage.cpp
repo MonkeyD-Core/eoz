@@ -1,4 +1,4 @@
-// Copyright (c) 2011-2018 The Bitcoin Core developers
+// Copyright (c) 2011-2018 The Eozi Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -28,7 +28,7 @@ class TxViewDelegate : public QAbstractItemDelegate
     Q_OBJECT
 public:
     explicit TxViewDelegate(const PlatformStyle *_platformStyle, QObject *parent=nullptr):
-        QAbstractItemDelegate(parent), unit(BitcoinUnits::BTC),
+        QAbstractItemDelegate(parent), unit(EoziUnits::BTC),
         platformStyle(_platformStyle)
     {
 
@@ -86,7 +86,7 @@ public:
             foreground = option.palette.color(QPalette::Text);
         }
         painter->setPen(foreground);
-        QString amountText = BitcoinUnits::formatWithUnit(unit, amount, true, BitcoinUnits::separatorAlways);
+        QString amountText = EoziUnits::formatWithUnit(unit, amount, true, EoziUnits::separatorAlways);
         if(!confirmed)
         {
             amountText = QString("[") + amountText + QString("]");
@@ -162,19 +162,19 @@ void OverviewPage::setBalance(const interfaces::WalletBalances& balances)
     int unit = walletModel->getOptionsModel()->getDisplayUnit();
     m_balances = balances;
     if (walletModel->privateKeysDisabled()) {
-        ui->labelBalance->setText(BitcoinUnits::formatWithUnit(unit, balances.watch_only_balance, false, BitcoinUnits::separatorAlways));
-        ui->labelUnconfirmed->setText(BitcoinUnits::formatWithUnit(unit, balances.unconfirmed_watch_only_balance, false, BitcoinUnits::separatorAlways));
-        ui->labelImmature->setText(BitcoinUnits::formatWithUnit(unit, balances.immature_watch_only_balance, false, BitcoinUnits::separatorAlways));
-        ui->labelTotal->setText(BitcoinUnits::formatWithUnit(unit, balances.watch_only_balance + balances.unconfirmed_watch_only_balance + balances.immature_watch_only_balance, false, BitcoinUnits::separatorAlways));
+        ui->labelBalance->setText(EoziUnits::formatWithUnit(unit, balances.watch_only_balance, false, EoziUnits::separatorAlways));
+        ui->labelUnconfirmed->setText(EoziUnits::formatWithUnit(unit, balances.unconfirmed_watch_only_balance, false, EoziUnits::separatorAlways));
+        ui->labelImmature->setText(EoziUnits::formatWithUnit(unit, balances.immature_watch_only_balance, false, EoziUnits::separatorAlways));
+        ui->labelTotal->setText(EoziUnits::formatWithUnit(unit, balances.watch_only_balance + balances.unconfirmed_watch_only_balance + balances.immature_watch_only_balance, false, EoziUnits::separatorAlways));
     } else {
-        ui->labelBalance->setText(BitcoinUnits::formatWithUnit(unit, balances.balance, false, BitcoinUnits::separatorAlways));
-        ui->labelUnconfirmed->setText(BitcoinUnits::formatWithUnit(unit, balances.unconfirmed_balance, false, BitcoinUnits::separatorAlways));
-        ui->labelImmature->setText(BitcoinUnits::formatWithUnit(unit, balances.immature_balance, false, BitcoinUnits::separatorAlways));
-        ui->labelTotal->setText(BitcoinUnits::formatWithUnit(unit, balances.balance + balances.unconfirmed_balance + balances.immature_balance, false, BitcoinUnits::separatorAlways));
-        ui->labelWatchAvailable->setText(BitcoinUnits::formatWithUnit(unit, balances.watch_only_balance, false, BitcoinUnits::separatorAlways));
-        ui->labelWatchPending->setText(BitcoinUnits::formatWithUnit(unit, balances.unconfirmed_watch_only_balance, false, BitcoinUnits::separatorAlways));
-        ui->labelWatchImmature->setText(BitcoinUnits::formatWithUnit(unit, balances.immature_watch_only_balance, false, BitcoinUnits::separatorAlways));
-        ui->labelWatchTotal->setText(BitcoinUnits::formatWithUnit(unit, balances.watch_only_balance + balances.unconfirmed_watch_only_balance + balances.immature_watch_only_balance, false, BitcoinUnits::separatorAlways));
+        ui->labelBalance->setText(EoziUnits::formatWithUnit(unit, balances.balance, false, EoziUnits::separatorAlways));
+        ui->labelUnconfirmed->setText(EoziUnits::formatWithUnit(unit, balances.unconfirmed_balance, false, EoziUnits::separatorAlways));
+        ui->labelImmature->setText(EoziUnits::formatWithUnit(unit, balances.immature_balance, false, EoziUnits::separatorAlways));
+        ui->labelTotal->setText(EoziUnits::formatWithUnit(unit, balances.balance + balances.unconfirmed_balance + balances.immature_balance, false, EoziUnits::separatorAlways));
+        ui->labelWatchAvailable->setText(EoziUnits::formatWithUnit(unit, balances.watch_only_balance, false, EoziUnits::separatorAlways));
+        ui->labelWatchPending->setText(EoziUnits::formatWithUnit(unit, balances.unconfirmed_watch_only_balance, false, EoziUnits::separatorAlways));
+        ui->labelWatchImmature->setText(EoziUnits::formatWithUnit(unit, balances.immature_watch_only_balance, false, EoziUnits::separatorAlways));
+        ui->labelWatchTotal->setText(EoziUnits::formatWithUnit(unit, balances.watch_only_balance + balances.unconfirmed_watch_only_balance + balances.immature_watch_only_balance, false, EoziUnits::separatorAlways));
     }
     // only show immature (newly mined) balance if it's non-zero, so as not to complicate things
     // for the non-mining users

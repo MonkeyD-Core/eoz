@@ -8,18 +8,18 @@ define(_CLIENT_VERSION_RC, 0)
 define(_CLIENT_VERSION_IS_RELEASE, true)
 define(_COPYRIGHT_YEAR, 2019)
 define(_COPYRIGHT_HOLDERS,[The %s developers])
-define(_COPYRIGHT_HOLDERS_SUBSTITUTION,[[Bitcoin Core]])
-AC_INIT([Bitcoin Core],m4_join([.], _CLIENT_VERSION_MAJOR, _CLIENT_VERSION_MINOR, _CLIENT_VERSION_REVISION, m4_if(_CLIENT_VERSION_BUILD, [0], [], _CLIENT_VERSION_BUILD))m4_if(_CLIENT_VERSION_RC, [0], [], [rc]_CLIENT_VERSION_RC),[https://github.com/eozi/eozi/issues],[eozi],[https://eozicore.org/])
+define(_COPYRIGHT_HOLDERS_SUBSTITUTION,[[Eozi Core]])
+AC_INIT([Eozi Core],m4_join([.], _CLIENT_VERSION_MAJOR, _CLIENT_VERSION_MINOR, _CLIENT_VERSION_REVISION, m4_if(_CLIENT_VERSION_BUILD, [0], [], _CLIENT_VERSION_BUILD))m4_if(_CLIENT_VERSION_RC, [0], [], [rc]_CLIENT_VERSION_RC),[https://github.com/eozi/eozi/issues],[eozi],[https://eozicore.org/])
 AC_CONFIG_SRCDIR([src/validation.cpp])
 AC_CONFIG_HEADERS([src/config/eozi-config.h])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([build-aux/m4])
 
-BITCOIN_DAEMON_NAME=eozid
-BITCOIN_GUI_NAME=eozi-qt
-BITCOIN_CLI_NAME=eozi-cli
-BITCOIN_TX_NAME=eozi-tx
-BITCOIN_WALLET_TOOL_NAME=eozi-wallet
+EOZI_DAEMON_NAME=eozid
+EOZI_GUI_NAME=eozi-qt
+EOZI_CLI_NAME=eozi-cli
+EOZI_TX_NAME=eozi-tx
+EOZI_WALLET_TOOL_NAME=eozi-wallet
 
 dnl Unless the user specified ARFLAGS, force it to be cr
 AC_ARG_VAR(ARFLAGS, [Flags for the archiver, defaults to <cr> if not set])
@@ -29,9 +29,9 @@ fi
 
 AC_CANONICAL_HOST
 
-AH_TOP([#ifndef BITCOIN_CONFIG_H])
-AH_TOP([#define BITCOIN_CONFIG_H])
-AH_BOTTOM([#endif //BITCOIN_CONFIG_H])
+AH_TOP([#ifndef EOZI_CONFIG_H])
+AH_TOP([#define EOZI_CONFIG_H])
+AH_BOTTOM([#endif //EOZI_CONFIG_H])
 
 dnl faketime breaks configure and is only needed for make. Disable it here.
 unset FAKETIME
@@ -1006,15 +1006,15 @@ if test "x$enable_fuzz" = "xyes"; then
   use_upnp=no
   use_zmq=no
 else
-  BITCOIN_QT_INIT
+  EOZI_QT_INIT
 
   dnl sets $eozi_enable_qt, $eozi_enable_qt_test, $eozi_enable_qt_dbus
-  BITCOIN_QT_CONFIGURE([$use_pkgconfig])
+  EOZI_QT_CONFIGURE([$use_pkgconfig])
 fi
 
 if test x$enable_wallet != xno; then
     dnl Check for libdb_cxx only if wallet enabled
-    BITCOIN_FIND_BDB48
+    EOZI_FIND_BDB48
 fi
 
 dnl Check for libminiupnpc (optional)
@@ -1231,10 +1231,10 @@ if test x$use_pkgconfig = xyes; then
       PKG_CHECK_MODULES([SSL], [libssl],, [AC_MSG_ERROR(openssl not found.)])
       PKG_CHECK_MODULES([CRYPTO], [libcrypto],,[AC_MSG_ERROR(libcrypto not found.)])
       if test x$enable_bip70 != xno; then
-        BITCOIN_QT_CHECK([PKG_CHECK_MODULES([PROTOBUF], [protobuf], [have_protobuf=yes], [have_protobuf=no])])
+        EOZI_QT_CHECK([PKG_CHECK_MODULES([PROTOBUF], [protobuf], [have_protobuf=yes], [have_protobuf=no])])
       fi
       if test x$use_qr != xno; then
-        BITCOIN_QT_CHECK([PKG_CHECK_MODULES([QR], [libqrencode], [have_qrencode=yes], [have_qrencode=no])])
+        EOZI_QT_CHECK([PKG_CHECK_MODULES([QR], [libqrencode], [have_qrencode=yes], [have_qrencode=no])])
       fi
       if test x$build_eozi_cli$build_eozid$eozi_enable_qt$use_tests != xnononono; then
         PKG_CHECK_MODULES([EVENT], [libevent],, [AC_MSG_ERROR(libevent not found.)])
@@ -1293,11 +1293,11 @@ else
   fi
 
   if test x$enable_bip70 != xno; then
-    BITCOIN_QT_CHECK(AC_CHECK_LIB([protobuf] ,[main],[PROTOBUF_LIBS=-lprotobuf], [have_protobuf=no]))
+    EOZI_QT_CHECK(AC_CHECK_LIB([protobuf] ,[main],[PROTOBUF_LIBS=-lprotobuf], [have_protobuf=no]))
   fi
   if test x$use_qr != xno; then
-    BITCOIN_QT_CHECK([AC_CHECK_LIB([qrencode], [main],[QR_LIBS=-lqrencode], [have_qrencode=no])])
-    BITCOIN_QT_CHECK([AC_CHECK_HEADER([qrencode.h],, have_qrencode=no)])
+    EOZI_QT_CHECK([AC_CHECK_LIB([qrencode], [main],[QR_LIBS=-lqrencode], [have_qrencode=no])])
+    EOZI_QT_CHECK([AC_CHECK_HEADER([qrencode.h],, have_qrencode=no)])
   fi
 fi
 
@@ -1375,27 +1375,27 @@ AC_SUBST(UNIVALUE_LIBS)
 
 if test x$have_protobuf != xno &&
    test x$enable_bip70 != xno; then
-  BITCOIN_QT_PATH_PROGS([PROTOC], [protoc],$protoc_bin_path)
+  EOZI_QT_PATH_PROGS([PROTOC], [protoc],$protoc_bin_path)
 fi
 
 AC_MSG_CHECKING([whether to build eozid])
-AM_CONDITIONAL([BUILD_BITCOIND], [test x$build_eozid = xyes])
+AM_CONDITIONAL([BUILD_EOZID], [test x$build_eozid = xyes])
 AC_MSG_RESULT($build_eozid)
 
 AC_MSG_CHECKING([whether to build eozi-cli])
-AM_CONDITIONAL([BUILD_BITCOIN_CLI], [test x$build_eozi_cli = xyes])
+AM_CONDITIONAL([BUILD_EOZI_CLI], [test x$build_eozi_cli = xyes])
 AC_MSG_RESULT($build_eozi_cli)
 
 AC_MSG_CHECKING([whether to build eozi-tx])
-AM_CONDITIONAL([BUILD_BITCOIN_TX], [test x$build_eozi_tx = xyes])
+AM_CONDITIONAL([BUILD_EOZI_TX], [test x$build_eozi_tx = xyes])
 AC_MSG_RESULT($build_eozi_tx)
 
 AC_MSG_CHECKING([whether to build eozi-wallet])
-AM_CONDITIONAL([BUILD_BITCOIN_WALLET], [test x$build_eozi_wallet = xyes])
+AM_CONDITIONAL([BUILD_EOZI_WALLET], [test x$build_eozi_wallet = xyes])
 AC_MSG_RESULT($build_eozi_wallet)
 
 AC_MSG_CHECKING([whether to build libraries])
-AM_CONDITIONAL([BUILD_BITCOIN_LIBS], [test x$build_eozi_libs = xyes])
+AM_CONDITIONAL([BUILD_EOZI_LIBS], [test x$build_eozi_libs = xyes])
 if test x$build_eozi_libs = xyes; then
   AC_DEFINE(HAVE_CONSENSUS_LIB, 1, [Define this symbol if the consensus lib has been built])
   AC_CONFIG_FILES([libeoziconsensus.pc:libeoziconsensus.pc.in])
@@ -1579,11 +1579,11 @@ AC_SUBST(COPYRIGHT_YEAR, _COPYRIGHT_YEAR)
 AC_SUBST(COPYRIGHT_HOLDERS, "_COPYRIGHT_HOLDERS")
 AC_SUBST(COPYRIGHT_HOLDERS_SUBSTITUTION, "_COPYRIGHT_HOLDERS_SUBSTITUTION")
 AC_SUBST(COPYRIGHT_HOLDERS_FINAL, "_COPYRIGHT_HOLDERS_FINAL")
-AC_SUBST(BITCOIN_DAEMON_NAME)
-AC_SUBST(BITCOIN_GUI_NAME)
-AC_SUBST(BITCOIN_CLI_NAME)
-AC_SUBST(BITCOIN_TX_NAME)
-AC_SUBST(BITCOIN_WALLET_TOOL_NAME)
+AC_SUBST(EOZI_DAEMON_NAME)
+AC_SUBST(EOZI_GUI_NAME)
+AC_SUBST(EOZI_CLI_NAME)
+AC_SUBST(EOZI_TX_NAME)
+AC_SUBST(EOZI_WALLET_TOOL_NAME)
 
 AC_SUBST(RELDFLAGS)
 AC_SUBST(DEBUG_CPPFLAGS)

@@ -1,7 +1,7 @@
 Benchmarking
 ============
 
-Bitcoin Core has an internal benchmarking framework, with benchmarks
+Eozi Core has an internal benchmarking framework, with benchmarks
 for cryptographic algorithms (e.g. SHA1, SHA256, SHA512, RIPEMD160, Poly1305, ChaCha20), rolling bloom filter, coins selection,
 thread queue, wallet balance.
 
@@ -43,6 +43,6 @@ More benchmarks are needed for, in no particular order:
 Going Further
 --------------------
 
-To monitor Bitcoin Core performance more in depth (like reindex or IBD): https://github.com/chaincodelabs/eoziperf
+To monitor Eozi Core performance more in depth (like reindex or IBD): https://github.com/chaincodelabs/eoziperf
 
-To generate Flame Graphs for Bitcoin Core: https://github.com/eklitzke/eozi/blob/flamegraphs/doc/flamegraphs.md
+To generate Flame Graphs for Eozi Core: https://github.com/eklitzke/eozi/blob/flamegraphs/doc/flamegraphs.md

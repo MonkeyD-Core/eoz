@@ -1,0 +1,67 @@
+#!/usr/bin/env bash
+#
+#  eozid The eozi core server.
+#
+#
+# chkconfig: 345 80 20
+# description: eozid
+# processname: eozid
+#
+
+# Source function library.
+. /etc/init.d/functions
+
+# you can override defaults in /etc/sysconfig/eozid, see below
+if [ -f /etc/sysconfig/eozid ]; then
+        . /etc/sysconfig/eozid
+fi
+
+RETVAL=0
+
+prog=eozid
+# you can override the lockfile via EOZID_LOCKFILE in /etc/sysconfig/eozid
+lockfile=${EOZID_LOCKFILE-/var/lock/subsys/eozid}
+
+# eozid defaults to /usr/bin/eozid, override with EOZID_BIN
+eozid=${EOZID_BIN-/usr/bin/eozid}
+
+# eozid opts default to -disablewallet, override with EOZID_OPTS
+eozid_opts=${EOZID_OPTS--disablewallet}
+
+start() {
+    echo -n $"Starting $prog: "
+    daemon $DAEMONOPTS $eozid $eozid_opts
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && touch $lockfile
+    return $RETVAL
+}
+
+stop() {
+    echo -n $"Stopping $prog: "
+    killproc $prog
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && rm -f $lockfile
+    return $RETVAL
+}
+
+case "$1" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    status)
+        status $prog
+        ;;
+    restart)
+        stop
+        start
+        ;;
+    *)
+        echo "Usage: service $prog {start|stop|status|restart}"
+        exit 1
+        ;;
+esac

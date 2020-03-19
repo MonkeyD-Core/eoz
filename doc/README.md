@@ -1,15 +1,15 @@
-Bitcoin Core
+Eozi Core
 =============
 
 Setup
 ---------------------
-Bitcoin Core is the original Bitcoin client and it builds the backbone of the network. It downloads and, by default, stores the entire history of Bitcoin transactions, which requires a few hundred gigabytes of disk space. Depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more.
+Eozi Core is the original Eozi client and it builds the backbone of the network. It downloads and, by default, stores the entire history of Eozi transactions, which requires a few hundred gigabytes of disk space. Depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more.
 
-To download Bitcoin Core, visit [eozicore.org](https://eozicore.org/en/download/).
+To download Eozi Core, visit [eozicore.org](https://eozicore.org/en/download/).
 
 Running
 ---------------------
-The following are some helpful notes on how to run Bitcoin Core on your native platform.
+The following are some helpful notes on how to run Eozi Core on your native platform.
 
 ### Unix
 
@@ -24,18 +24,18 @@ Unpack the files into a directory, and then run eozi-qt.exe.
 
 ### macOS
 
-Drag Bitcoin Core to your applications folder, and then run Bitcoin Core.
+Drag Eozi Core to your applications folder, and then run Eozi Core.
 
 ### Need Help?
 
-* See the documentation at the [Bitcoin Wiki](https://en.eozi.it/wiki/Main_Page)
+* See the documentation at the [Eozi Wiki](https://en.eozi.it/wiki/Main_Page)
 for help and more information.
 * Ask for help on [#eozi](http://webchat.freenode.net?channels=eozi) on Freenode. If you don't have an IRC client, use [webchat here](http://webchat.freenode.net?channels=eozi).
-* Ask for help on the [BitcoinTalk](https://eozitalk.org/) forums, in the [Technical Support board](https://eozitalk.org/index.php?board=4.0).
+* Ask for help on the [EoziTalk](https://eozitalk.org/) forums, in the [Technical Support board](https://eozitalk.org/index.php?board=4.0).
 
 Building
 ---------------------
-The following are developer notes on how to build Bitcoin Core on your native platform. They are not complete guides, but include notes on the necessary libraries, compile flags, etc.
+The following are developer notes on how to build Eozi Core on your native platform. They are not complete guides, but include notes on the necessary libraries, compile flags, etc.
 
 - [Dependencies](dependencies.md)
 - [macOS Build Notes](build-osx.md)
@@ -48,7 +48,7 @@ The following are developer notes on how to build Bitcoin Core on your native pl
 
 Development
 ---------------------
-The Bitcoin repo's [root README](/README.md) contains relevant information on the development process and automated testing.
+The Eozi repo's [root README](/README.md) contains relevant information on the development process and automated testing.
 
 - [Developer Notes](developer-notes.md)
 - [Productivity Notes](productivity.md)
@@ -65,9 +65,9 @@ The Bitcoin repo's [root README](/README.md) contains relevant information on th
 - [Benchmarking](benchmarking.md)
 
 ### Resources
-* Discuss on the [BitcoinTalk](https://eozitalk.org/) forums, in the [Development & Technical Discussion board](https://eozitalk.org/index.php?board=6.0).
+* Discuss on the [EoziTalk](https://eozitalk.org/) forums, in the [Development & Technical Discussion board](https://eozitalk.org/index.php?board=6.0).
 * Discuss project-specific development on #eozi-core-dev on Freenode. If you don't have an IRC client, use [webchat here](http://webchat.freenode.net/?channels=eozi-core-dev).
-* Discuss general Bitcoin development on #eozi-dev on Freenode. If you don't have an IRC client, use [webchat here](http://webchat.freenode.net/?channels=eozi-dev).
+* Discuss general Eozi development on #eozi-dev on Freenode. If you don't have an IRC client, use [webchat here](http://webchat.freenode.net/?channels=eozi-dev).
 
 ### Miscellaneous
 - [Assets Attribution](assets-attribution.md)

@@ -1,9 +1,9 @@
-// Copyright (c) 2009-2018 The Bitcoin Core developers
+// Copyright (c) 2009-2018 The Eozi Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_NETADDRESS_H
-#define BITCOIN_NETADDRESS_H
+#ifndef EOZI_NETADDRESS_H
+#define EOZI_NETADDRESS_H
 
 #if defined(HAVE_CONFIG_H)
 #include <config/eozi-config.h>
@@ -170,4 +170,4 @@ class CService : public CNetAddr
         }
 };
 
-#endif // BITCOIN_NETADDRESS_H
+#endif // EOZI_NETADDRESS_H

@@ -1,4 +1,4 @@
-Bitcoin Core version 0.17.0.1 is now available from:
+Eozi Core version 0.17.0.1 is now available from:
 
   <https://eozicore.org/bin/eozi-core-0.17.0.1/>
 

@@ -1,9 +1,9 @@
-// Copyright (c) 2011-2018 The Bitcoin Core developers
+// Copyright (c) 2011-2018 The Eozi Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_QT_PAYMENTSERVER_H
-#define BITCOIN_QT_PAYMENTSERVER_H
+#ifndef EOZI_QT_PAYMENTSERVER_H
+#define EOZI_QT_PAYMENTSERVER_H
 
 // This class handles payment requests from clicking on
 // eozi: URIs
@@ -157,4 +157,4 @@ private:
 #endif
 };
 
-#endif // BITCOIN_QT_PAYMENTSERVER_H
+#endif // EOZI_QT_PAYMENTSERVER_H

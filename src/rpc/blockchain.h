@@ -1,9 +1,9 @@
-// Copyright (c) 2017-2018 The Bitcoin Core developers
+// Copyright (c) 2017-2018 The Eozi Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_RPC_BLOCKCHAIN_H
-#define BITCOIN_RPC_BLOCKCHAIN_H
+#ifndef EOZI_RPC_BLOCKCHAIN_H
+#define EOZI_RPC_BLOCKCHAIN_H
 
 #include <amount.h>
 #include <sync.h>

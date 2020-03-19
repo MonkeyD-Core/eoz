@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2014-2019 The Bitcoin Core developers
+# Copyright (c) 2014-2019 The Eozi Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Base class for RPC testing."""
@@ -53,27 +53,27 @@ class SkipTest(Exception):
         self.message = message
 
 
-class BitcoinTestMetaClass(type):
-    """Metaclass for BitcoinTestFramework.
+class EoziTestMetaClass(type):
+    """Metaclass for EoziTestFramework.
 
-    Ensures that any attempt to register a subclass of `BitcoinTestFramework`
+    Ensures that any attempt to register a subclass of `EoziTestFramework`
     adheres to a standard whereby the subclass overrides `set_test_params` and
     `run_test` but DOES NOT override either `__init__` or `main`. If any of
     those standards are violated, a ``TypeError`` is raised."""
 
     def __new__(cls, clsname, bases, dct):
-        if not clsname == 'BitcoinTestFramework':
+        if not clsname == 'EoziTestFramework':
             if not ('run_test' in dct and 'set_test_params' in dct):
-                raise TypeError("BitcoinTestFramework subclasses must override "
+                raise TypeError("EoziTestFramework subclasses must override "
                                 "'run_test' and 'set_test_params'")
             if '__init__' in dct or 'main' in dct:
-                raise TypeError("BitcoinTestFramework subclasses may not override "
+                raise TypeError("EoziTestFramework subclasses may not override "
                                 "'__init__' or 'main'")
 
         return super().__new__(cls, clsname, bases, dct)
 
 
-class BitcoinTestFramework(metaclass=BitcoinTestMetaClass):
+class EoziTestFramework(metaclass=EoziTestMetaClass):
     """Base class for a eozi test script.
 
     Individual eozi test scripts should subclass this class and override the set_test_params() and run_test() methods.
@@ -144,8 +144,8 @@ class BitcoinTestFramework(metaclass=BitcoinTestMetaClass):
         config = configparser.ConfigParser()
         config.read_file(open(self.options.configfile))
         self.config = config
-        self.options.eozid = os.getenv("BITCOIND", default=config["environment"]["BUILDDIR"] + '/src/eozid' + config["environment"]["EXEEXT"])
-        self.options.eozicli = os.getenv("BITCOINCLI", default=config["environment"]["BUILDDIR"] + '/src/eozi-cli' + config["environment"]["EXEEXT"])
+        self.options.eozid = os.getenv("EOZID", default=config["environment"]["BUILDDIR"] + '/src/eozid' + config["environment"]["EXEEXT"])
+        self.options.eozicli = os.getenv("EOZICLI", default=config["environment"]["BUILDDIR"] + '/src/eozi-cli' + config["environment"]["EXEEXT"])
 
         os.environ['PATH'] = os.pathsep.join([
             os.path.join(config['environment']['BUILDDIR'], 'src'),
@@ -470,7 +470,7 @@ class BitcoinTestFramework(metaclass=BitcoinTestMetaClass):
         self.log.addHandler(ch)
 
         if self.options.trace_rpc:
-            rpc_logger = logging.getLogger("BitcoinRPC")
+            rpc_logger = logging.getLogger("EoziRPC")
             rpc_logger.setLevel(logging.DEBUG)
             rpc_handler = logging.StreamHandler(sys.stdout)
             rpc_handler.setLevel(logging.DEBUG)

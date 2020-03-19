@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2014-2019 The Bitcoin Core developers
+# Copyright (c) 2014-2019 The Eozi Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Run regression test suite.
@@ -8,7 +8,7 @@ This module calls down into individual test cases via subprocess. It will
 forward all unrecognized arguments onto the individual test scripts.
 
 For a description of arguments recognized by test scripts, see
-`test/functional/test_framework/test_framework.py:BitcoinTestFramework.main`.
+`test/functional/test_framework/test_framework.py:EoziTestFramework.main`.
 
 """
 
@@ -277,7 +277,7 @@ def main():
 
     logging.debug("Temporary test directory at %s" % tmpdir)
 
-    enable_eozid = config["components"].getboolean("ENABLE_BITCOIND")
+    enable_eozid = config["components"].getboolean("ENABLE_EOZID")
 
     if not enable_eozid:
         print("No functional tests to run.")

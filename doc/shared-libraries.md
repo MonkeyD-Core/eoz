@@ -3,7 +3,7 @@ Shared Libraries
 
 ## eoziconsensus
 
-The purpose of this library is to make the verification functionality that is critical to Bitcoin's consensus available to other applications, e.g. to language bindings.
+The purpose of this library is to make the verification functionality that is critical to Eozi's consensus available to other applications, e.g. to language bindings.
 
 ### API
 
@@ -43,7 +43,7 @@ The interface is defined in the C header `eoziconsensus.h` located in `src/scrip
 - `eoziconsensus_ERR_AMOUNT_REQUIRED` - Input amount is required if WITNESS is used
 
 ### Example Implementations
-- [NBitcoin](https://github.com/NicolasDorier/NBitcoin/blob/master/NBitcoin/Script.cs#L814) (.NET Bindings)
+- [NEozi](https://github.com/NicolasDorier/NEozi/blob/master/NEozi/Script.cs#L814) (.NET Bindings)
 - [node-libeoziconsensus](https://github.com/bitpay/node-libeoziconsensus) (Node.js Bindings)
 - [java-libeoziconsensus](https://github.com/dexX7/java-libeoziconsensus) (Java Bindings)
 - [eoziconsensus-php](https://github.com/Bit-Wasp/eoziconsensus-php) (PHP Bindings)

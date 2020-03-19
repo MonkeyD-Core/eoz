@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2019 The Bitcoin Core developers
+# Copyright (c) 2019 The Eozi Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Test eozid aborts if can't disconnect a block.
@@ -10,11 +10,11 @@
 - Verify that eozid AbortNode's.
 """
 
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import EoziTestFramework
 from test_framework.util import wait_until, get_datadir_path, connect_nodes
 import os
 
-class AbortNodeTest(BitcoinTestFramework):
+class AbortNodeTest(EoziTestFramework):
 
     def set_test_params(self):
         self.setup_clean_chain = True

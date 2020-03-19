@@ -1,9 +1,9 @@
-// Copyright (c) 2019 The Bitcoin Core developers
+// Copyright (c) 2019 The Eozi Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_QT_WALLETCONTROLLER_H
-#define BITCOIN_QT_WALLETCONTROLLER_H
+#ifndef EOZI_QT_WALLETCONTROLLER_H
+#define EOZI_QT_WALLETCONTROLLER_H
 
 #include <qt/walletmodel.h>
 #include <support/allocators/secure.h>
@@ -143,4 +143,4 @@ private:
     void finish();
 };
 
-#endif // BITCOIN_QT_WALLETCONTROLLER_H
+#endif // EOZI_QT_WALLETCONTROLLER_H

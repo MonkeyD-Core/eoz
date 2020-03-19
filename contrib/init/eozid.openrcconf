@@ -1,0 +1,33 @@
+# /etc/conf.d/eozid: config file for /etc/init.d/eozid
+
+# Config file location
+#EOZID_CONFIGFILE="/etc/eozi/eozi.conf"
+
+# What directory to write pidfile to?  (created and owned by $EOZID_USER)
+#EOZID_PIDDIR="/var/run/eozid"
+
+# What filename to give the pidfile
+#EOZID_PIDFILE="${EOZID_PIDDIR}/eozid.pid"
+
+# Where to write eozid data (be mindful that the blockchain is large)
+#EOZID_DATADIR="/var/lib/eozid"
+
+# User and group to own eozid process
+#EOZID_USER="eozi"
+#EOZID_GROUP="eozi"
+
+# Path to eozid executable
+#EOZID_BIN="/usr/bin/eozid"
+
+# Nice value to run eozid under
+#EOZID_NICE=0
+
+# Additional options (avoid -conf and -datadir, use flags above)
+#EOZID_OPTS=""
+
+# The timeout in seconds OpenRC will wait for eozid to terminate
+# after a SIGTERM has been raised.
+# Note that this will be mapped as argument to start-stop-daemon's
+# '--retry' option, which means you can specify a retry schedule
+# here. For more information see man 8 start-stop-daemon.
+EOZID_SIGTERM_TIMEOUT=60

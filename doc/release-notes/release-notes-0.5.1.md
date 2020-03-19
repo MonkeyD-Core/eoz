@@ -1,5 +1,5 @@
-Bitcoin version 0.5.1 is now available for download at:
-http://sourceforge.net/projects/eozi/files/Bitcoin/eozi-0.5.1/
+Eozi version 0.5.1 is now available for download at:
+http://sourceforge.net/projects/eozi/files/Eozi/eozi-0.5.1/
 
 This is a bugfix-only release.
 

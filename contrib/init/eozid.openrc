@@ -1,0 +1,92 @@
+#!/sbin/openrc-run
+
+# backward compatibility for existing gentoo layout 
+#
+if [ -d "/var/lib/eozi/.eozi" ]; then
+	EOZID_DEFAULT_DATADIR="/var/lib/eozi/.eozi"
+else
+	EOZID_DEFAULT_DATADIR="/var/lib/eozid"
+fi
+
+EOZID_CONFIGFILE=${EOZID_CONFIGFILE:-/etc/eozi/eozi.conf}
+EOZID_PIDDIR=${EOZID_PIDDIR:-/var/run/eozid}
+EOZID_PIDFILE=${EOZID_PIDFILE:-${EOZID_PIDDIR}/eozid.pid}
+EOZID_DATADIR=${EOZID_DATADIR:-${EOZID_DEFAULT_DATADIR}}
+EOZID_USER=${EOZID_USER:-${EOZI_USER:-eozi}}
+EOZID_GROUP=${EOZID_GROUP:-eozi}
+EOZID_BIN=${EOZID_BIN:-/usr/bin/eozid}
+EOZID_NICE=${EOZID_NICE:-${NICELEVEL:-0}}
+EOZID_OPTS="${EOZID_OPTS:-${EOZI_OPTS}}"
+
+name="Eozi Core Daemon"
+description="Eozi cryptocurrency P2P network daemon"
+
+command="/usr/bin/eozid"
+command_args="-pid=\"${EOZID_PIDFILE}\" \
+		-conf=\"${EOZID_CONFIGFILE}\" \
+		-datadir=\"${EOZID_DATADIR}\" \
+		-daemon \
+		${EOZID_OPTS}"
+
+required_files="${EOZID_CONFIGFILE}"
+start_stop_daemon_args="-u ${EOZID_USER} \
+			-N ${EOZID_NICE} -w 2000"
+pidfile="${EOZID_PIDFILE}"
+
+# The retry schedule to use when stopping the daemon. Could be either
+# a timeout in seconds or multiple signal/timeout pairs (like
+# "SIGKILL/180 SIGTERM/300")
+retry="${EOZID_SIGTERM_TIMEOUT}"
+
+depend() {
+	need localmount net
+}
+
+# verify
+# 1) that the datadir exists and is writable (or create it)
+# 2) that a directory for the pid exists and is writable
+# 3) ownership and permissions on the config file
+start_pre() {
+	checkpath \
+	-d \
+	--mode 0750 \
+	--owner "${EOZID_USER}:${EOZID_GROUP}" \
+	"${EOZID_DATADIR}"
+
+	checkpath \
+	-d \
+	--mode 0755 \
+	--owner "${EOZID_USER}:${EOZID_GROUP}" \
+	"${EOZID_PIDDIR}"
+
+	checkpath -f \
+	-o ${EOZID_USER}:${EOZID_GROUP} \
+	-m 0660 \
+	${EOZID_CONFIGFILE}
+
+	checkconfig || return 1
+}
+
+checkconfig()
+{
+	if ! grep -qs '^rpcpassword=' "${EOZID_CONFIGFILE}" ; then
+		eerror ""
+		eerror "ERROR: You must set a secure rpcpassword to run eozid."
+		eerror "The setting must appear in ${EOZID_CONFIGFILE}"
+		eerror ""
+		eerror "This password is security critical to securing wallets "
+		eerror "and must not be the same as the rpcuser setting."
+		eerror "You can generate a suitable random password using the following "
+		eerror "command from the shell:"
+		eerror ""
+		eerror "bash -c 'tr -dc a-zA-Z0-9 < /dev/urandom | head -c32 && echo'"
+		eerror ""
+		eerror "It is recommended that you also set alertnotify so you are "
+		eerror "notified of problems:"
+		eerror ""
+		eerror "ie: alertnotify=echo %%s | mail -s \"Eozi Alert\"" \
+			"admin@foo.com"
+		eerror ""
+		return 1
+	fi
+}

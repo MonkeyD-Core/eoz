@@ -1,9 +1,9 @@
-// Copyright (c) 2012-2018 The Bitcoin Core developers
+// Copyright (c) 2012-2018 The Eozi Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_BLOOM_H
-#define BITCOIN_BLOOM_H
+#ifndef EOZI_BLOOM_H
+#define EOZI_BLOOM_H
 
 #include <serialize.h>
 
@@ -136,4 +136,4 @@ private:
     int nHashFuncs;
 };
 
-#endif // BITCOIN_BLOOM_H
+#endif // EOZI_BLOOM_H

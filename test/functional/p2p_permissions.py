@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2015-2018 The Bitcoin Core developers
+# Copyright (c) 2015-2018 The Eozi Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Test p2p permission message.
@@ -8,14 +8,14 @@ Test that permissions are correctly calculated and applied
 """
 
 from test_framework.test_node import ErrorMatch
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import EoziTestFramework
 from test_framework.util import (
     assert_equal,
     connect_nodes,
     p2p_port,
 )
 
-class P2PPermissionsTests(BitcoinTestFramework):
+class P2PPermissionsTests(EoziTestFramework):
     def set_test_params(self):
         self.num_nodes = 2
         self.setup_clean_chain = True

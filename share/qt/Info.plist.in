@@ -29,16 +29,16 @@
   <string>????</string>
 
   <key>CFBundleExecutable</key>
-  <string>Bitcoin-Qt</string>
+  <string>Eozi-Qt</string>
 
   <key>CFBundleName</key>
-  <string>Bitcoin-Qt</string>
+  <string>Eozi-Qt</string>
 
   <key>LSHasLocalizedDisplayName</key>
   <true/>
 
   <key>CFBundleIdentifier</key>
-  <string>org.eozifoundation.Bitcoin-Qt</string>
+  <string>org.eozifoundation.Eozi-Qt</string>
 
   <key>CFBundleURLTypes</key>
   <array>
@@ -46,7 +46,7 @@
       <key>CFBundleTypeRole</key>
       <string>Editor</string>
       <key>CFBundleURLName</key>
-      <string>org.eozi.BitcoinPayment</string>
+      <string>org.eozi.EoziPayment</string>
       <key>CFBundleURLSchemes</key>
       <array>
         <string>eozi</string>
@@ -60,7 +60,7 @@
       <key>UTTypeIdentifier</key>
       <string>org.eozi.paymentrequest</string>
       <key>UTTypeDescription</key>
-      <string>Bitcoin payment request</string>
+      <string>Eozi payment request</string>
       <key>UTTypeConformsTo</key>
       <array>
         <string>public.data</string>

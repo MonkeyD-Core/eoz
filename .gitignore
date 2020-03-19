@@ -89,7 +89,7 @@ src/qt/eozi-qt.includes
 Makefile
 !depends/Makefile
 eozi-qt
-Bitcoin-Qt.app
+Eozi-Qt.app
 background.tiff*
 
 # Qt Creator

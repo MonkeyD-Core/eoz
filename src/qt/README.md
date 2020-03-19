@@ -1,4 +1,4 @@
-This directory contains the BitcoinQT graphical user interface (GUI). It uses the cross-platform framework [Qt](https://www1.qt.io/developers/).
+This directory contains the EoziQT graphical user interface (GUI). It uses the cross-platform framework [Qt](https://www1.qt.io/developers/).
 
 The current precise version for Qt 5 is specified in [qt.mk](/depends/packages/qt.mk).
 
@@ -32,7 +32,7 @@ Tests.
 
 ### eozigui.(h/cpp)
 
-Represents the main window of the Bitcoin UI.
+Represents the main window of the Eozi UI.
 
 ### \*model.(h/cpp)
 
@@ -58,7 +58,7 @@ Represents the view to a single wallet.
 
 ### Other .h/cpp files
 
-* UI elements like BitcoinAmountField, which inherit from QWidget.
+* UI elements like EoziAmountField, which inherit from QWidget.
 * `eozistrings.cpp`: automatically generated
 * `eoziunits.(h/cpp)`: BTC / mBTC / etc handling
 * `callback.h`

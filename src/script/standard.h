@@ -1,10 +1,10 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2018 The Bitcoin Core developers
+// Copyright (c) 2009-2018 The Eozi Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_SCRIPT_STANDARD_H
-#define BITCOIN_SCRIPT_STANDARD_H
+#ifndef EOZI_SCRIPT_STANDARD_H
+#define EOZI_SCRIPT_STANDARD_H
 
 #include <script/interpreter.h>
 #include <uint256.h>
@@ -183,7 +183,7 @@ bool ExtractDestination(const CScript& scriptPubKey, CTxDestination& addressRet)
 bool ExtractDestinations(const CScript& scriptPubKey, txnouttype& typeRet, std::vector<CTxDestination>& addressRet, int& nRequiredRet);
 
 /**
- * Generate a Bitcoin scriptPubKey for the given CTxDestination. Returns a P2PKH
+ * Generate a Eozi scriptPubKey for the given CTxDestination. Returns a P2PKH
  * script for a CKeyID destination, a P2SH script for a CScriptID, and an empty
  * script for CNoDestination.
  */
@@ -205,4 +205,4 @@ CScript GetScriptForMultisig(int nRequired, const std::vector<CPubKey>& keys);
  */
 CScript GetScriptForWitness(const CScript& redeemscript);
 
-#endif // BITCOIN_SCRIPT_STANDARD_H
+#endif // EOZI_SCRIPT_STANDARD_H

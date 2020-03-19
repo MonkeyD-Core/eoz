@@ -42,17 +42,17 @@ from the root of the repository.
 
 **Note**: You only need Berkeley DB if the wallet is enabled (see [*Disable-wallet mode*](/doc/build-osx.md#disable-wallet-mode)).
 
-## Build Bitcoin Core
+## Build Eozi Core
 
-1. Clone the Bitcoin Core source code:
+1. Clone the Eozi Core source code:
     ```shell
     git clone https://github.com/eozi/eozi
     cd eozi
     ```
 
-2.  Build Bitcoin Core:
+2.  Build Eozi Core:
 
-    Configure and build the headless Bitcoin Core binaries as well as the GUI (if Qt is found).
+    Configure and build the headless Eozi Core binaries as well as the GUI (if Qt is found).
 
     You can disable the GUI build by passing `--without-gui` to configure.
     ```shell
@@ -72,7 +72,7 @@ from the root of the repository.
     ```
 
 ## `disable-wallet` mode
-When the intention is to run only a P2P node without a wallet, Bitcoin Core may be
+When the intention is to run only a P2P node without a wallet, Eozi Core may be
 compiled in `disable-wallet` mode with:
 ```shell
 ./configure --disable-wallet
@@ -83,15 +83,15 @@ In this case there is no dependency on Berkeley DB 4.8.
 Mining is also possible in disable-wallet mode using the `getblocktemplate` RPC call.
 
 ## Running
-Bitcoin Core is now available at `./src/eozid`
+Eozi Core is now available at `./src/eozid`
 
 Before running, you may create an empty configuration file:
 ```shell
-mkdir -p "/Users/${USER}/Library/Application Support/Bitcoin"
+mkdir -p "/Users/${USER}/Library/Application Support/Eozi"
 
-touch "/Users/${USER}/Library/Application Support/Bitcoin/eozi.conf"
+touch "/Users/${USER}/Library/Application Support/Eozi/eozi.conf"
 
-chmod 600 "/Users/${USER}/Library/Application Support/Bitcoin/eozi.conf"
+chmod 600 "/Users/${USER}/Library/Application Support/Eozi/eozi.conf"
 ```
 
 The first time you run eozid, it will start downloading the blockchain. This process could
@@ -99,7 +99,7 @@ take many hours, or even days on slower than average systems.
 
 You can monitor the download process by looking at the debug.log file:
 ```shell
-tail -f $HOME/Library/Application\ Support/Bitcoin/debug.log
+tail -f $HOME/Library/Application\ Support/Eozi/debug.log
 ```
 
 ## Other commands:

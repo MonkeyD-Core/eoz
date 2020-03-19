@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2019 The Bitcoin Core developers
+// Copyright (c) 2009-2019 The Eozi Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -7,8 +7,8 @@
 #error This header can only be compiled as C++.
 #endif
 
-#ifndef BITCOIN_PROTOCOL_H
-#define BITCOIN_PROTOCOL_H
+#ifndef EOZI_PROTOCOL_H
+#define EOZI_PROTOCOL_H
 
 #include <netaddress.h>
 #include <serialize.h>
@@ -61,7 +61,7 @@ public:
 };
 
 /**
- * Bitcoin protocol message types. When adding new message types, don't forget
+ * Eozi protocol message types. When adding new message types, don't forget
  * to update allNetMessageTypes in protocol.cpp.
  */
 namespace NetMsgType {
@@ -248,14 +248,14 @@ enum ServiceFlags : uint64_t {
     // Nothing
     NODE_NONE = 0,
     // NODE_NETWORK means that the node is capable of serving the complete block chain. It is currently
-    // set by all Bitcoin Core non pruned nodes, and is unset by SPV clients or other light clients.
+    // set by all Eozi Core non pruned nodes, and is unset by SPV clients or other light clients.
     NODE_NETWORK = (1 << 0),
     // NODE_GETUTXO means the node is capable of responding to the getutxo protocol request.
-    // Bitcoin Core does not support this but a patch set called Bitcoin XT does.
+    // Eozi Core does not support this but a patch set called Eozi XT does.
     // See BIP 64 for details on how this is implemented.
     NODE_GETUTXO = (1 << 1),
     // NODE_BLOOM means the node is capable and willing to handle bloom-filtered connections.
-    // Bitcoin Core nodes used to support this by default, without advertising this bit,
+    // Eozi Core nodes used to support this by default, without advertising this bit,
     // but no longer do as of protocol version 70011 (= NO_BLOOM_VERSION)
     NODE_BLOOM = (1 << 2),
     // NODE_WITNESS indicates that a node can be asked for blocks and transactions including
@@ -404,4 +404,4 @@ public:
     uint256 hash;
 };
 
-#endif // BITCOIN_PROTOCOL_H
+#endif // EOZI_PROTOCOL_H

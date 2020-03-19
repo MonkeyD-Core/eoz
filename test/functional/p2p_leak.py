@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2017-2019 The Bitcoin Core developers
+# Copyright (c) 2017-2019 The Eozi Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Test message sending before handshake completion.
@@ -14,7 +14,7 @@ import time
 
 from test_framework.messages import msg_getaddr, msg_ping, msg_verack
 from test_framework.mininode import mininode_lock, P2PInterface
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import EoziTestFramework
 from test_framework.util import wait_until
 
 banscore = 10
@@ -88,7 +88,7 @@ class CNodeNoVerackIdle(CLazyNode):
         self.send_message(msg_ping())
         self.send_message(msg_getaddr())
 
-class P2PLeakTest(BitcoinTestFramework):
+class P2PLeakTest(EoziTestFramework):
     def set_test_params(self):
         self.num_nodes = 1
         self.extra_args = [['-banscore=' + str(banscore)]]

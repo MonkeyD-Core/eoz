@@ -1,9 +1,9 @@
-// Copyright (c) 2012-2018 The Bitcoin Core developers
+// Copyright (c) 2012-2018 The Eozi Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_CHECKQUEUE_H
-#define BITCOIN_CHECKQUEUE_H
+#ifndef EOZI_CHECKQUEUE_H
+#define EOZI_CHECKQUEUE_H
 
 #include <sync.h>
 
@@ -211,4 +211,4 @@ public:
     }
 };
 
-#endif // BITCOIN_CHECKQUEUE_H
+#endif // EOZI_CHECKQUEUE_H

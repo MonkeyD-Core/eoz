@@ -1,4 +1,4 @@
-// Copyright (c) 2011-2019 The Bitcoin Core developers
+// Copyright (c) 2011-2019 The Eozi Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -14,7 +14,7 @@
 #include <QHBoxLayout>
 #include <QLabel>
 
-WalletFrame::WalletFrame(const PlatformStyle *_platformStyle, BitcoinGUI *_gui) :
+WalletFrame::WalletFrame(const PlatformStyle *_platformStyle, EoziGUI *_gui) :
     QFrame(_gui),
     gui(_gui),
     platformStyle(_platformStyle)
@@ -47,7 +47,7 @@ bool WalletFrame::addWallet(WalletModel *walletModel)
     if (mapWalletViews.count(walletModel) > 0) return false;
 
     WalletView *walletView = new WalletView(platformStyle, this);
-    walletView->setBitcoinGUI(gui);
+    walletView->setEoziGUI(gui);
     walletView->setClientModel(clientModel);
     walletView->setWalletModel(walletModel);
     walletView->showOutOfSyncWarning(bOutOfSync);

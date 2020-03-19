@@ -1,4 +1,4 @@
-# Copyright (c) 2013-2016 The Bitcoin Core developers
+# Copyright (c) 2013-2016 The Eozi Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -19,43 +19,43 @@ else
 LIBUNIVALUE = $(UNIVALUE_LIBS)
 endif
 
-BITCOIN_INCLUDES=-I$(builddir) $(BDB_CPPFLAGS) $(BOOST_CPPFLAGS) $(LEVELDB_CPPFLAGS) $(CRYPTO_CFLAGS) $(SSL_CFLAGS)
+EOZI_INCLUDES=-I$(builddir) $(BDB_CPPFLAGS) $(BOOST_CPPFLAGS) $(LEVELDB_CPPFLAGS) $(CRYPTO_CFLAGS) $(SSL_CFLAGS)
 
-BITCOIN_INCLUDES += -I$(srcdir)/secp256k1/include
-BITCOIN_INCLUDES += $(UNIVALUE_CFLAGS)
+EOZI_INCLUDES += -I$(srcdir)/secp256k1/include
+EOZI_INCLUDES += $(UNIVALUE_CFLAGS)
 
-LIBBITCOIN_SERVER=libeozi_server.a
-LIBBITCOIN_COMMON=libeozi_common.a
-LIBBITCOIN_CONSENSUS=libeozi_consensus.a
-LIBBITCOIN_CLI=libeozi_cli.a
-LIBBITCOIN_UTIL=libeozi_util.a
-LIBBITCOIN_CRYPTO_BASE=crypto/libeozi_crypto_base.a
-LIBBITCOINQT=qt/libeoziqt.a
+LIBEOZI_SERVER=libeozi_server.a
+LIBEOZI_COMMON=libeozi_common.a
+LIBEOZI_CONSENSUS=libeozi_consensus.a
+LIBEOZI_CLI=libeozi_cli.a
+LIBEOZI_UTIL=libeozi_util.a
+LIBEOZI_CRYPTO_BASE=crypto/libeozi_crypto_base.a
+LIBEOZIQT=qt/libeoziqt.a
 LIBSECP256K1=secp256k1/libsecp256k1.la
 
 if ENABLE_ZMQ
-LIBBITCOIN_ZMQ=libeozi_zmq.a
+LIBEOZI_ZMQ=libeozi_zmq.a
 endif
-if BUILD_BITCOIN_LIBS
-LIBBITCOINCONSENSUS=libeoziconsensus.la
+if BUILD_EOZI_LIBS
+LIBEOZICONSENSUS=libeoziconsensus.la
 endif
 if ENABLE_WALLET
-LIBBITCOIN_WALLET=libeozi_wallet.a
-LIBBITCOIN_WALLET_TOOL=libeozi_wallet_tool.a
+LIBEOZI_WALLET=libeozi_wallet.a
+LIBEOZI_WALLET_TOOL=libeozi_wallet_tool.a
 endif
 
-LIBBITCOIN_CRYPTO= $(LIBBITCOIN_CRYPTO_BASE)
+LIBEOZI_CRYPTO= $(LIBEOZI_CRYPTO_BASE)
 if ENABLE_SSE41
-LIBBITCOIN_CRYPTO_SSE41 = crypto/libeozi_crypto_sse41.a
-LIBBITCOIN_CRYPTO += $(LIBBITCOIN_CRYPTO_SSE41)
+LIBEOZI_CRYPTO_SSE41 = crypto/libeozi_crypto_sse41.a
+LIBEOZI_CRYPTO += $(LIBEOZI_CRYPTO_SSE41)
 endif
 if ENABLE_AVX2
-LIBBITCOIN_CRYPTO_AVX2 = crypto/libeozi_crypto_avx2.a
-LIBBITCOIN_CRYPTO += $(LIBBITCOIN_CRYPTO_AVX2)
+LIBEOZI_CRYPTO_AVX2 = crypto/libeozi_crypto_avx2.a
+LIBEOZI_CRYPTO += $(LIBEOZI_CRYPTO_AVX2)
 endif
 if ENABLE_SHANI
-LIBBITCOIN_CRYPTO_SHANI = crypto/libeozi_crypto_shani.a
-LIBBITCOIN_CRYPTO += $(LIBBITCOIN_CRYPTO_SHANI)
+LIBEOZI_CRYPTO_SHANI = crypto/libeozi_crypto_shani.a
+LIBEOZI_CRYPTO += $(LIBEOZI_CRYPTO_SHANI)
 endif
 
 $(LIBSECP256K1): $(wildcard secp256k1/src/*.h) $(wildcard secp256k1/src/*.c) $(wildcard secp256k1/include/*)
@@ -64,42 +64,42 @@ $(LIBSECP256K1): $(wildcard secp256k1/src/*.h) $(wildcard secp256k1/src/*.c) $(w
 # Make is not made aware of per-object dependencies to avoid limiting building parallelization
 # But to build the less dependent modules first, we manually select their order here:
 EXTRA_LIBRARIES += \
-  $(LIBBITCOIN_CRYPTO) \
-  $(LIBBITCOIN_UTIL) \
-  $(LIBBITCOIN_COMMON) \
-  $(LIBBITCOIN_CONSENSUS) \
-  $(LIBBITCOIN_SERVER) \
-  $(LIBBITCOIN_CLI) \
-  $(LIBBITCOIN_WALLET) \
-  $(LIBBITCOIN_WALLET_TOOL) \
-  $(LIBBITCOIN_ZMQ)
+  $(LIBEOZI_CRYPTO) \
+  $(LIBEOZI_UTIL) \
+  $(LIBEOZI_COMMON) \
+  $(LIBEOZI_CONSENSUS) \
+  $(LIBEOZI_SERVER) \
+  $(LIBEOZI_CLI) \
+  $(LIBEOZI_WALLET) \
+  $(LIBEOZI_WALLET_TOOL) \
+  $(LIBEOZI_ZMQ)
 
-lib_LTLIBRARIES = $(LIBBITCOINCONSENSUS)
+lib_LTLIBRARIES = $(LIBEOZICONSENSUS)
 
 bin_PROGRAMS =
 noinst_PROGRAMS =
 TESTS =
 BENCHMARKS =
 
-if BUILD_BITCOIND
+if BUILD_EOZID
   bin_PROGRAMS += eozid
 endif
 
-if BUILD_BITCOIN_CLI
+if BUILD_EOZI_CLI
   bin_PROGRAMS += eozi-cli
 endif
-if BUILD_BITCOIN_TX
+if BUILD_EOZI_TX
   bin_PROGRAMS += eozi-tx
 endif
 if ENABLE_WALLET
-if BUILD_BITCOIN_WALLET
+if BUILD_EOZI_WALLET
   bin_PROGRAMS += eozi-wallet
 endif
 endif
 
 .PHONY: FORCE check-symbols check-security
 # eozi core #
-BITCOIN_CORE_H = \
+EOZI_CORE_H = \
   addrdb.h \
   addrman.h \
   attributes.h \
@@ -255,7 +255,7 @@ libeozi_util_a-clientversion.$(OBJEXT): obj/build.h
 # Contains code accessing mempool and chain state that is meant to be separated
 # from wallet and gui code (see node/README.md). Shared code should go in
 # libeozi_common or libeozi_util libraries, instead.
-libeozi_server_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(MINIUPNPC_CPPFLAGS) $(EVENT_CFLAGS) $(EVENT_PTHREADS_CFLAGS)
+libeozi_server_a_CPPFLAGS = $(AM_CPPFLAGS) $(EOZI_INCLUDES) $(MINIUPNPC_CPPFLAGS) $(EVENT_CFLAGS) $(EVENT_PTHREADS_CFLAGS)
 libeozi_server_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libeozi_server_a_SOURCES = \
   addrdb.cpp \
@@ -304,7 +304,7 @@ libeozi_server_a_SOURCES = \
   validation.cpp \
   validationinterface.cpp \
   versionbits.cpp \
-  $(BITCOIN_CORE_H)
+  $(EOZI_CORE_H)
 
 if ENABLE_WALLET
 libeozi_server_a_SOURCES += wallet/init.cpp
@@ -314,7 +314,7 @@ libeozi_server_a_SOURCES += dummywallet.cpp
 endif
 
 if ENABLE_ZMQ
-libeozi_zmq_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(ZMQ_CFLAGS)
+libeozi_zmq_a_CPPFLAGS = $(AM_CPPFLAGS) $(EOZI_INCLUDES) $(ZMQ_CFLAGS)
 libeozi_zmq_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libeozi_zmq_a_SOURCES = \
   zmq/zmqabstractnotifier.cpp \
@@ -326,7 +326,7 @@ endif
 
 # wallet: shared between eozid and eozi-qt, but only linked
 # when wallet enabled
-libeozi_wallet_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+libeozi_wallet_a_CPPFLAGS = $(AM_CPPFLAGS) $(EOZI_INCLUDES)
 libeozi_wallet_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libeozi_wallet_a_SOURCES = \
   interfaces/wallet.cpp \
@@ -344,13 +344,13 @@ libeozi_wallet_a_SOURCES = \
   wallet/walletdb.cpp \
   wallet/walletutil.cpp \
   wallet/coinselection.cpp \
-  $(BITCOIN_CORE_H)
+  $(EOZI_CORE_H)
 
-libeozi_wallet_tool_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+libeozi_wallet_tool_a_CPPFLAGS = $(AM_CPPFLAGS) $(EOZI_INCLUDES)
 libeozi_wallet_tool_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libeozi_wallet_tool_a_SOURCES = \
   wallet/wallettool.cpp \
-  $(BITCOIN_CORE_H)
+  $(EOZI_CORE_H)
 
 # crypto primitives library
 crypto_libeozi_crypto_base_a_CPPFLAGS = $(AM_CPPFLAGS)
@@ -405,7 +405,7 @@ crypto_libeozi_crypto_shani_a_CPPFLAGS += -DENABLE_SHANI
 crypto_libeozi_crypto_shani_a_SOURCES = crypto/sha256_shani.cpp
 
 # consensus: shared between all executables that validate any consensus rules.
-libeozi_consensus_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+libeozi_consensus_a_CPPFLAGS = $(AM_CPPFLAGS) $(EOZI_INCLUDES)
 libeozi_consensus_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libeozi_consensus_a_SOURCES = \
   amount.h \
@@ -442,7 +442,7 @@ libeozi_consensus_a_SOURCES = \
   version.h
 
 # common: shared between eozid, and eozi-qt and non-server tools
-libeozi_common_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+libeozi_common_a_CPPFLAGS = $(AM_CPPFLAGS) $(EOZI_INCLUDES)
 libeozi_common_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libeozi_common_a_SOURCES = \
   base58.cpp \
@@ -473,12 +473,12 @@ libeozi_common_a_SOURCES = \
   script/standard.cpp \
   versionbitsinfo.cpp \
   warnings.cpp \
-  $(BITCOIN_CORE_H)
+  $(EOZI_CORE_H)
 
 # util: shared between all executables.
 # This library *must* be included to make sure that the glibc
 # backward-compatibility objects and their sanity checks are linked.
-libeozi_util_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+libeozi_util_a_CPPFLAGS = $(AM_CPPFLAGS) $(EOZI_INCLUDES)
 libeozi_util_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libeozi_util_a_SOURCES = \
   support/lockedpool.cpp \
@@ -509,7 +509,7 @@ libeozi_util_a_SOURCES = \
   util/time.cpp \
   util/url.cpp \
   util/validation.cpp \
-  $(BITCOIN_CORE_H)
+  $(EOZI_CORE_H)
 
 if GLIBC_BACK_COMPAT
 libeozi_util_a_SOURCES += compat/glibc_compat.cpp
@@ -517,18 +517,18 @@ AM_LDFLAGS += $(COMPAT_LDFLAGS)
 endif
 
 # cli: shared between eozi-cli and eozi-qt
-libeozi_cli_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+libeozi_cli_a_CPPFLAGS = $(AM_CPPFLAGS) $(EOZI_INCLUDES)
 libeozi_cli_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libeozi_cli_a_SOURCES = \
   rpc/client.cpp \
-  $(BITCOIN_CORE_H)
+  $(EOZI_CORE_H)
 
 nodist_libeozi_util_a_SOURCES = $(srcdir)/obj/build.h
 #
 
 # eozid binary #
 eozid_SOURCES = eozid.cpp
-eozid_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+eozid_CPPFLAGS = $(AM_CPPFLAGS) $(EOZI_INCLUDES)
 eozid_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 eozid_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
@@ -539,15 +539,15 @@ endif
 # Libraries below may be listed more than once to resolve circular dependencies (see
 # https://eli.thegreenplace.net/2013/07/09/library-order-in-static-linking#circular-dependency)
 eozid_LDADD = \
-  $(LIBBITCOIN_SERVER) \
-  $(LIBBITCOIN_WALLET) \
-  $(LIBBITCOIN_SERVER) \
-  $(LIBBITCOIN_COMMON) \
+  $(LIBEOZI_SERVER) \
+  $(LIBEOZI_WALLET) \
+  $(LIBEOZI_SERVER) \
+  $(LIBEOZI_COMMON) \
   $(LIBUNIVALUE) \
-  $(LIBBITCOIN_UTIL) \
-  $(LIBBITCOIN_ZMQ) \
-  $(LIBBITCOIN_CONSENSUS) \
-  $(LIBBITCOIN_CRYPTO) \
+  $(LIBEOZI_UTIL) \
+  $(LIBEOZI_ZMQ) \
+  $(LIBEOZI_CONSENSUS) \
+  $(LIBEOZI_CRYPTO) \
   $(LIBLEVELDB) \
   $(LIBLEVELDB_SSE42) \
   $(LIBMEMENV) \
@@ -557,7 +557,7 @@ eozid_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVEN
 
 # eozi-cli binary #
 eozi_cli_SOURCES = eozi-cli.cpp
-eozi_cli_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
+eozi_cli_CPPFLAGS = $(AM_CPPFLAGS) $(EOZI_INCLUDES) $(EVENT_CFLAGS)
 eozi_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 eozi_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
@@ -566,17 +566,17 @@ eozi_cli_SOURCES += eozi-cli-res.rc
 endif
 
 eozi_cli_LDADD = \
-  $(LIBBITCOIN_CLI) \
+  $(LIBEOZI_CLI) \
   $(LIBUNIVALUE) \
-  $(LIBBITCOIN_UTIL) \
-  $(LIBBITCOIN_CRYPTO)
+  $(LIBEOZI_UTIL) \
+  $(LIBEOZI_CRYPTO)
 
 eozi_cli_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS)
 #
 
 # eozi-tx binary #
 eozi_tx_SOURCES = eozi-tx.cpp
-eozi_tx_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+eozi_tx_CPPFLAGS = $(AM_CPPFLAGS) $(EOZI_INCLUDES)
 eozi_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 eozi_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
@@ -586,10 +586,10 @@ endif
 
 eozi_tx_LDADD = \
   $(LIBUNIVALUE) \
-  $(LIBBITCOIN_COMMON) \
-  $(LIBBITCOIN_UTIL) \
-  $(LIBBITCOIN_CONSENSUS) \
-  $(LIBBITCOIN_CRYPTO) \
+  $(LIBEOZI_COMMON) \
+  $(LIBEOZI_UTIL) \
+  $(LIBEOZI_CONSENSUS) \
+  $(LIBEOZI_CRYPTO) \
   $(LIBSECP256K1)
 
 eozi_tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
@@ -597,7 +597,7 @@ eozi_tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
 
 # eozi-wallet binary #
 eozi_wallet_SOURCES = eozi-wallet.cpp
-eozi_wallet_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+eozi_wallet_CPPFLAGS = $(AM_CPPFLAGS) $(EOZI_INCLUDES)
 eozi_wallet_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 eozi_wallet_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
@@ -606,13 +606,13 @@ eozi_wallet_SOURCES += eozi-wallet-res.rc
 endif
 
 eozi_wallet_LDADD = \
-  $(LIBBITCOIN_WALLET_TOOL) \
-  $(LIBBITCOIN_WALLET) \
-  $(LIBBITCOIN_COMMON) \
-  $(LIBBITCOIN_CONSENSUS) \
-  $(LIBBITCOIN_UTIL) \
-  $(LIBBITCOIN_CRYPTO) \
-  $(LIBBITCOIN_ZMQ) \
+  $(LIBEOZI_WALLET_TOOL) \
+  $(LIBEOZI_WALLET) \
+  $(LIBEOZI_COMMON) \
+  $(LIBEOZI_CONSENSUS) \
+  $(LIBEOZI_UTIL) \
+  $(LIBEOZI_CRYPTO) \
+  $(LIBEOZI_ZMQ) \
   $(LIBLEVELDB) \
   $(LIBLEVELDB_SSE42) \
   $(LIBMEMENV) \
@@ -623,7 +623,7 @@ eozi_wallet_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(CRYPTO_LIBS) $(EVENT_PTHREADS_L
 #
 
 # eoziconsensus library #
-if BUILD_BITCOIN_LIBS
+if BUILD_EOZI_LIBS
 include_HEADERS = script/eoziconsensus.h
 libeoziconsensus_la_SOURCES = support/cleanse.cpp $(crypto_libeozi_crypto_base_a_SOURCES) $(libeozi_consensus_a_SOURCES)
 
@@ -633,7 +633,7 @@ endif
 
 libeoziconsensus_la_LDFLAGS = $(AM_LDFLAGS) -no-undefined $(RELDFLAGS)
 libeoziconsensus_la_LIBADD = $(LIBSECP256K1)
-libeoziconsensus_la_CPPFLAGS = $(AM_CPPFLAGS) -I$(builddir)/obj -I$(srcdir)/secp256k1/include -DBUILD_BITCOIN_INTERNAL
+libeoziconsensus_la_CPPFLAGS = $(AM_CPPFLAGS) -I$(builddir)/obj -I$(srcdir)/secp256k1/include -DBUILD_EOZI_INTERNAL
 libeoziconsensus_la_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 
 endif

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2017-2019 The Bitcoin Core developers
+# Copyright (c) 2017-2019 The Eozi Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Class for eozid node under test"""
@@ -32,7 +32,7 @@ from .util import (
     p2p_port,
 )
 
-BITCOIND_PROC_WAIT_TIMEOUT = 60
+EOZID_PROC_WAIT_TIMEOUT = 60
 
 
 class FailedToStartError(Exception):
@@ -303,7 +303,7 @@ class TestNode():
         self.log.debug("Node stopped")
         return True
 
-    def wait_until_stopped(self, timeout=BITCOIND_PROC_WAIT_TIMEOUT):
+    def wait_until_stopped(self, timeout=EOZID_PROC_WAIT_TIMEOUT):
         wait_until(self.is_node_stopped, timeout=timeout)
 
     @contextlib.contextmanager

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2015-2019 The Bitcoin Core developers
+# Copyright (c) 2015-2019 The Eozi Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Test block processing."""
@@ -49,7 +49,7 @@ from test_framework.script import (
     SignatureHash,
     hash160,
 )
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import EoziTestFramework
 from test_framework.util import assert_equal
 from data import invalid_txs
 
@@ -78,7 +78,7 @@ class CBrokenBlock(CBlock):
 DUPLICATE_COINBASE_SCRIPT_SIG = b'\x01\x78'  # Valid for block at height 120
 
 
-class FullBlockTest(BitcoinTestFramework):
+class FullBlockTest(EoziTestFramework):
     def set_test_params(self):
         self.num_nodes = 1
         self.setup_clean_chain = True

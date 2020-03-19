@@ -1,4 +1,4 @@
-Bitcoin Core version 0.17.0 is now available from:
+Eozi Core version 0.17.0 is now available from:
 
   <https://eozicore.org/bin/eozi-core-0.17.0/>
 
@@ -18,7 +18,7 @@ How to Upgrade
 
 If you are running an older version, shut it down. Wait until it has completely
 shut down (which might take a few minutes for older versions), then run the
-installer (on Windows) or just copy over `/Applications/Bitcoin-Qt` (on Mac)
+installer (on Windows) or just copy over `/Applications/Eozi-Qt` (on Mac)
 or `eozid`/`eozi-qt` (on Linux).
 
 If your node has a txindex, the txindex db will be migrated the first time you run 0.17.0 or newer, which may take up to a few hours. Your node will not be functional until this migration completes.
@@ -46,10 +46,10 @@ processing the entire blockchain.
 Compatibility
 ==============
 
-Bitcoin Core is extensively tested on multiple operating systems using
+Eozi Core is extensively tested on multiple operating systems using
 the Linux kernel, macOS 10.10+, and Windows 7 and newer (Windows XP is not supported).
 
-Bitcoin Core should also work on most other Unix-like systems but is not
+Eozi Core should also work on most other Unix-like systems but is not
 frequently tested on them.
 
 From 0.17.0 onwards macOS <10.10 is no longer supported. 0.17.0 is built using Qt 5.9.x, which doesn't
@@ -184,10 +184,10 @@ Here are the changes to RPC methods:
 | `listtransactions`     | The `account` named parameter has been renamed to `dummy`. If provided, the `dummy` parameter must be set to the string `*`, unless running with the `-deprecatedrpc=accounts` argument (in which case functionality is unchanged). |
 | `getbalance`           | `account`, `minconf` and `include_watchonly` parameters are deprecated, and can only be used if running with '-deprecatedrpc=accounts' |
 
-BIP 174 Partially Signed Bitcoin Transactions support
+BIP 174 Partially Signed Eozi Transactions support
 -----------------------------------------------------
 
-[BIP 174 PSBT](https://github.com/eozi/bips/blob/master/bip-0174.mediawiki) is an interchange format for Bitcoin transactions that are not fully signed
+[BIP 174 PSBT](https://github.com/eozi/bips/blob/master/bip-0174.mediawiki) is an interchange format for Eozi transactions that are not fully signed
 yet, together with relevant metadata to help entities work towards signing it.
 It is intended to simplify workflows where multiple parties need to cooperate to
 produce a transaction. Examples include hardware wallets, multisig setups, and
@@ -195,7 +195,7 @@ produce a transaction. Examples include hardware wallets, multisig setups, and
 
 ### Overall workflow
 
-Overall, the construction of a fully signed Bitcoin transaction goes through the
+Overall, the construction of a fully signed Eozi transaction goes through the
 following steps:
 
 - A **Creator** proposes a particular transaction to be created. He constructs
@@ -210,7 +210,7 @@ following steps:
   partial signature for the inputs for which they have relevant key(s).
 - A **Finalizer** is run for each input to convert the partial signatures and
   possibly script information into a final `scriptSig` and/or `scriptWitness`.
-- An **Extractor** produces a valid Bitcoin transaction (in network format)
+- An **Extractor** produces a valid Eozi transaction (in network format)
   from a PSBT for which all inputs are finalized.
 
 Generally, each of the above (excluding Creator and Extractor) will simply
@@ -256,7 +256,7 @@ hardware implementations will typically implement multiple roles simultaneously.
 Upgrading non-HD wallets to HD wallets
 --------------------------------------
 
-Since Bitcoin Core 0.13.0, creating new BIP 32 Hierarchical Deterministic wallets has been supported by Bitcoin Core but old non-HD wallets could not be upgraded to HD. Now non-HD wallets can be upgraded to HD using the `-upgradewallet` command line option. This upgrade will result in the all keys in the keypool being marked as used and a new keypool generated. **A new backup must be made when this upgrade is performed.**
+Since Eozi Core 0.13.0, creating new BIP 32 Hierarchical Deterministic wallets has been supported by Eozi Core but old non-HD wallets could not be upgraded to HD. Now non-HD wallets can be upgraded to HD using the `-upgradewallet` command line option. This upgrade will result in the all keys in the keypool being marked as used and a new keypool generated. **A new backup must be made when this upgrade is performed.**
 
 Additionally, `-upgradewallet` can be used to upgraded from a non-split HD chain (all keys generated with `m/0'/0'/i'`) to a split HD chain (receiving keys generated with `'m/0'/0'/i'` and change keys generated with `m'/0'/1'/i'`). When this upgrade occurs, all keys already in the keypool will remain in the keypool to be used until all keys from before the upgrade are exhausted. This is to avoid issues with backups and downgrades when some keys may come from the change key keypool. Users can begin using the new split HD chain keypools by using the `newkeypool` RPC to mark all keys in the keypool as used and begin using a new keypool generated from the split HD chain.
 
@@ -587,7 +587,7 @@ Support for Python 2 has been discontinued for all test files and tools.
 - #13043 `6e249e4` OptionsDialog: add prune setting (Sjors)
 - #13506 `6579d80` load wallet in UI after possible init aborts (jonasschnelli)
 - #13458 `dc53f7f` Drop qt4 support (laanwj)
-- #13528 `b877c39` Move BitcoinGUI initializers to class, fix initializer order warning (laanwj)
+- #13528 `b877c39` Move EoziGUI initializers to class, fix initializer order warning (laanwj)
 - #13536 `baf3a3a` coincontrol: Remove unused qt4 workaround (MarcoFalke)
 - #13537 `10ffca7` Peer table: Visualize inbound/outbound state for every row (wodry)
 - #13791 `2c14c1f` Reject dialogs if key escape is pressed (promag)
@@ -652,7 +652,7 @@ Support for Python 2 has been discontinued for all test files and tools.
 - #12252 `8d57319` Require all tests to follow naming convention (ajtowns)
 - #12295 `935eb8d` Enable flake8 warnings for all currently non-violated rules (practicalswift)
 - #11858 `b4d8549` Prepare tests for Windows (MarcoFalke)
-- #11771 `2dbc4a4` Change invalidtxrequest to use BitcoinTestFramework (jnewbery)
+- #11771 `2dbc4a4` Change invalidtxrequest to use EoziTestFramework (jnewbery)
 - #12200 `d09968f` Bind functional test nodes to 127.0.0.1 (Sjors)
 - #12425 `26dc2da` Add some script tests (richardkiss)
 - #12455 `23481fa` Fix bip68 sequence test to reflect updated rpc error message (Empact)
@@ -665,7 +665,7 @@ Support for Python 2 has been discontinued for all test files and tools.
 - #12600 `29088b1` Add a test for large tx output scripts with segwit input (richardkiss)
 - #12627 `791c3ea` Fix some tests to work on native windows (MarcoFalke)
 - #12405 `0f58d7f` travis: Full clone for git subtree check (MarcoFalke)
-- #11772 `0630974` Change invalidblockrequest to use BitcoinTestFramework (jnewbery)
+- #11772 `0630974` Change invalidblockrequest to use EoziTestFramework (jnewbery)
 - #12681 `1846296` Fix ComputeTimeSmart test failure with `-DDEBUG_LOCKORDER` (ryanofsky)
 - #12682 `9f04c8e` travis: Clone depth 1 unless `$check_doc` (MarcoFalke)
 - #12710 `00d1680` Append scripts to new `test_list` array to fix bad assignment (jeffrade)
@@ -678,9 +678,9 @@ Support for Python 2 has been discontinued for all test files and tools.
 - #12806 `18606eb` Fix function names in `feature_blocksdir` (MarcoFalke)
 - #12811 `0d8fc8d` Make summary row bold-red if any test failed and show failed tests at end of table (laanwj)
 - #12790 `490644d` Use blockmaxweight where tests previously had blockmaxsize (conscott)
-- #11773 `f0f9732` Change `feature_block.py` to use BitcoinTestFramework (jnewbery)
+- #11773 `f0f9732` Change `feature_block.py` to use EoziTestFramework (jnewbery)
 - #12839 `40f4baf` Remove travis checkout depth (laanwj)
-- #11817 `2a09a78` Change `feature_csv_activation.py` to use BitcoinTestFramework (jnewbery)
+- #11817 `2a09a78` Change `feature_csv_activation.py` to use EoziTestFramework (jnewbery)
 - #12284 `fa5825d` Remove assigned but never used local variables. Enable Travis checking for unused local variables (practicalswift)
 - #12719 `9beded5` Add note about test suite naming convention in developer-notes.md (practicalswift)
 - #12861 `c564424` Stop `feature_block.py` from blowing up memory (jnewbery)
@@ -690,7 +690,7 @@ Support for Python 2 has been discontinued for all test files and tools.
 - #12766 `69310a3` Tidy up REST interface functional tests (romanz)
 - #12849 `83c7533` Add logging in loops in `p2p_sendhears.py` (ccdle12)
 - #12895 `d6f10b2` Add note about test suite name uniqueness requirement to developer notes (practicalswift)
-- #12856 `27278df` Add Metaclass for BitcoinTestFramework (WillAyd)
+- #12856 `27278df` Add Metaclass for EoziTestFramework (WillAyd)
 - #12918 `6fc5a05` Assert on correct variable (kallewoof)
 - #11878 `a04440f` Add Travis check for duplicate includes (practicalswift)
 - #12917 `cf8073f` Windows fixups for functional tests (MarcoFalke)

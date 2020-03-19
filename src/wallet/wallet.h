@@ -1,10 +1,10 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2019 The Bitcoin Core developers
+// Copyright (c) 2009-2019 The Eozi Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_WALLET_WALLET_H
-#define BITCOIN_WALLET_WALLET_H
+#ifndef EOZI_WALLET_WALLET_H
+#define EOZI_WALLET_WALLET_H
 
 #include <amount.h>
 #include <interfaces/chain.h>
@@ -179,7 +179,7 @@ extern const std::map<uint64_t,std::string> WALLET_FLAG_CAVEATS;
  * are sets of keys that have not yet been used to provide addresses or receive
  * change.
  *
- * The Bitcoin Core wallet was originally a collection of unrelated private
+ * The Eozi Core wallet was originally a collection of unrelated private
  * keys with their associated addresses. If a non-HD wallet generated a
  * key/address, gave that address out and then restored a backup from before
  * that key's generation, then any funds sent to that address would be
@@ -1467,4 +1467,4 @@ public:
 // be IsAllFromMe).
 int64_t CalculateMaximumSignedTxSize(const CTransaction &tx, const CWallet *wallet, bool use_max_sig = false) EXCLUSIVE_LOCKS_REQUIRED(wallet->cs_wallet);
 int64_t CalculateMaximumSignedTxSize(const CTransaction &tx, const CWallet *wallet, const std::vector<CTxOut>& txouts, bool use_max_sig = false);
-#endif // BITCOIN_WALLET_WALLET_H
+#endif // EOZI_WALLET_WALLET_H

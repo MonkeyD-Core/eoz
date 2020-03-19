@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2014-2018 The Bitcoin Core developers
+# Copyright (c) 2014-2018 The Eozi Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Test running eozid with -reindex and -reindex-chainstate options.
@@ -9,10 +9,10 @@
 - Stop the node and restart it with -reindex-chainstate. Verify that the node has reindexed up to block 3.
 """
 
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import EoziTestFramework
 from test_framework.util import wait_until
 
-class ReindexTest(BitcoinTestFramework):
+class ReindexTest(EoziTestFramework):
 
     def set_test_params(self):
         self.setup_clean_chain = True
